@@ -1,18 +1,27 @@
 from pprint import pprint
 import re
 import os
+import srt
+import datetime
+import json
 
-KNOWN_WORDS_PATH  = "/home/sonja/Dropbox/RC/Vocabulary project/First_step/Known_words_user_x.txt"
+from cfg import KNOWN_WORDS_PATH
 
 def get_known_words():
     if not os.path.exists(KNOWN_WORDS_PATH):
         with open (KNOWN_WORDS_PATH, "w") as fout:
             known_vocabulary_list = ask_user_what_words_they_know()
-            fout.writelines("\n".join(known_vocabulary_list))
+            value = {"source" : "Common words corpus", "date_added" : datetime.datetime.today().strftime('%Y %b%d')
+}
+            known_words_dictionary = {}
+            for word in known_vocabulary_list:
+                known_words_dictionary[word] = value
+            
+            json.dump(known_words_dictionary, fout)
     else:
         with open (KNOWN_WORDS_PATH, "r") as fin:
-            known_vocabulary_list = [item.strip() for item in fin.readlines()]
-    return set(known_vocabulary_list)
+            known_words_dictionary = json.load(fin)
+    return known_words_dictionary
 
 def ask_user_what_words_they_know():
     known_vocabulary = []
@@ -33,10 +42,29 @@ def ask_user_what_words_they_know():
     return known_vocabulary
 
 def gather_movie_vocabulary(path):   
-    regex =r"[a-zA-Z]+'*[a-zA-Z]+"
+    regex_words =r"[a-zA-Z]+'*[a-zA-Z]+"
+    regex_sentences =r".*"
+    todays_date = datetime.datetime.today().strftime('%Y %b%d')
+
+    output = {}
+
     with open(path,"r") as fin:
         str = fin.read()
-    return {item.lower() for item in re.findall(regex, str)}
+    subtitle_generator = srt.parse(str)
+    for subtitle in subtitle_generator:
+        sentences = re.findall(regex_sentences, subtitle.content)
+        for sentence in sentences:
+            words = re.findall(regex_words, sentence)
+            for word in words:
+                word_data = output.setdefault(word, {})
+                word_data.setdefault('sample_sentences', []).append(sentence)
+                if 'first_start_time' not in word_data:
+                    word_data['first_start_time'] = subtitle.start
+                if 'first_end_time' not in word_data:
+                    word_data['first_end_time'] = subtitle.end
+                word_data['source'] = 'Inception' # FIXME
+                word_data['date_added'] = todays_date
+    return output
 
 def does_user_know(words):
     unknown_vocabulary = set()
