@@ -25,6 +25,7 @@ assert 'Email:' in form.text
 assert 'Password:' in form.text
 
 # User enters username "John@gmail.com", password "Johnspassword" and clicks the submit button.
+mail_field.send_keys('John@gmail.com')
 submit_button = d.find_element_by_css_selector(
     'input[value="Create Account!"]')
 submit_button.click()
