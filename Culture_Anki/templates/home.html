@@ -1,0 +1,48 @@
+<!doctype html>
+    <html lang='en'>
+
+    <head>
+        <link href='style.css' type='text/css' rel='stylesheet'>
+        <title>Vocabulary through Culture</title>
+        <meta charset='utf-8'>
+    </head>
+
+              
+
+    <body>
+        <h1>
+            Welcome to Vocabulary through Culture!
+        </h1>
+        <div>
+            <p id='test-id'> hello </p>
+        </div>
+        <form action='/login' id='register-form' method='post'>
+            <div>
+                <span style='float: left; width: 100px'>Email: </span>
+                <input type='text' id='mail-id' name='username'>
+            </div>
+            <div>
+                <span style='float: left; width: 100px'>Password: </span>
+                <input type='password' id='password' name='password'>
+            </div>
+            <a href="/create_account">Create Account!</a>
+            <input type="submit" value="Log in">
+        </form>
+
+        
+
+
+    </body>
+
+    <!-- {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}      -->
+
+
+    </html>

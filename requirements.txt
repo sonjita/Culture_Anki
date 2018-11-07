@@ -1,2 +1,4 @@
 srt==1.6.0
 genanki==0.6.3
+selenium==3.14.1
+pytest==3.9.2

@@ -1,7 +1,7 @@
 from selenium import webdriver
 d = webdriver.Firefox()
 # User goes to the page.
-d.get('http://0.0.0.0:8000/index.html')
+d.get('http://0.0.0.0:8000/')
 
 # Users browser displays title "Vocabulary through Culture"
 assert "Vocabulary through Culture" in d.title
@@ -17,17 +17,19 @@ form = d.find_element_by_id('register-form')
 mail_field = d.find_element_by_css_selector('input#mail-id')
 assert mail_field.get_attribute('type') == 'text'
 password_field = d.find_element_by_css_selector('input#password')
-assert password_field.get_attribute('type') == 'text'
+assert password_field.get_attribute('type') == 'password'
 
 # User sees labels for those text fields
-print(form.text)
+#print(form.text)
 assert 'Email:' in form.text
 assert 'Password:' in form.text
 
 # User enters username "John@gmail.com", password "Johnspassword" and clicks the submit button.
-# mail_field.send_keys('John@gmail.com')
+mail_field.send_keys('john@gmail.com')
+password_field.send_keys('unsecure_password')
 submit_button = d.find_element_by_css_selector(
     'input[value="Create Account!"]')
+#
 submit_button.click()
 
 # Thw browser takes John to a New webpage: Title "Welcome"

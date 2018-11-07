@@ -1,0 +1,38 @@
+<!doctype html>
+    <html lang='en'>
+
+    <head>
+        <link href='style.css' type='text/css' rel='stylesheet'>
+        <title>Vocabulary through Culture</title>
+        <meta charset='utf-8'>
+    </head>
+ 
+
+    <body>
+        <h1>
+           Add new media
+        </h1>
+        <form action="/add_media" method="post"> 
+        <div>   
+            <label>Medium</label>
+            <select>
+                    <option value="Movie">Movie</option>
+                    <option value="Book">Book</option>
+                    <option value="Song">Song</option>
+            </select>
+        </div>
+        <div>
+            <label>Title</label>  
+            <input type="text" name="title">
+         </div>
+         <div>   
+            <label>Language</label>
+            <input type="text" name="language">
+        </div>
+        <div>
+            <label>Upload File</label> 
+            <input type="file" name="text_file">
+        </div>
+            <input type="submit" value="Submit">
+        </form>
+    </body>

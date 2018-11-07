@@ -1,0 +1,4 @@
+Culture_Anki.egg-info/PKG-INFO
+Culture_Anki.egg-info/SOURCES.txt
+Culture_Anki.egg-info/dependency_links.txt
+Culture_Anki.egg-info/top_level.txt

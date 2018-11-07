@@ -1,0 +1,36 @@
+<!doctype html>
+    <html lang='en'>
+
+    <head>
+        <link href='style.css' type='text/css' rel='stylesheet'>
+        <title>Vocabulary through Culture</title>
+        <meta charset='utf-8'>
+    </head>
+
+              
+
+    <body>
+        <h1>
+           Do you know these 100 words?
+        </h1>
+        <div class="checkboxes">
+
+                {% with currentChunk = chunk %}
+                
+                    {% if currentChunk %}
+                        <table>
+                        
+                        {% for word in currentChunk %}
+                            <input type="checkbox" name="common-words" value="{{word}}"><span>{{word}}</span>
+                            {% if loop.index % 20 == 0 %}
+                                
+                            {% endif %}
+                        {% endfor %}
+                        </table>
+                    {% endif %}
+                {% endwith %}
+            
+        </div>
+        <input type="submit" value="Submit">
+
+    </body>
