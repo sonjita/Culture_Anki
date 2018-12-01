@@ -1,0 +1,47 @@
+<!-- {% block head %}
+{% endblock %}
+{% block content %}
+<p>Please add and configure the languages you wish to use this site for.</p> -->
+<!-- <button onclick='addLanguage()'>Add Language</button>
+<div id="dialog" title="Basic dialog">
+    <select id="lang_selector">
+    {% for lang in langs %}
+     <option value="{{lang}}">{{lang}}</option>
+    { % endfor %}
+   </select>
+   <div>``
+   <button style="font-size: 11px;"onclick='addLanguage()'>Cancel</button>
+   <button style="font-size: 11px;" onclick='close_window()'>Add</button>
+   </div>
+</div>
+<h4>My Languages</h4>
+{% for language in vocab %}
+<h5>{{language}}</h5>
+<ul>
+    <li>Vocabulary Proficiency : {{vocab[language]}}</li>
+    <li><a href='/learnmore'>Stem Recognition</a> of</li>
+    <ul>
+        {% for item in grammar[language] %} 
+        <li>{{item}} : {{grammar[language][item]}}</li>
+        {% endfor %}
+    </ul>
+</ul>
+{% endfor %}
+<script>
+    
+    function close_window() {
+        console.log("here");
+        dialog.style.display = "none";
+    }
+
+    function addLanguage() {
+        console.log('here2');
+        dialog.style.display = "block";
+    }
+
+    let selected = document.getElementById("lang_selector").value;
+    console.log(selected);
+
+
+</script>  -->
+<!-- {% endblock %} -->

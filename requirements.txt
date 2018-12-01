@@ -1,4 +1,7 @@
+#install with pip3:
 srt==1.6.0
 genanki==0.6.3
 selenium==3.14.1
 pytest==3.9.2
+python-opensubtitles==0.2.dev0
+# if the last line doesn't work, try: -e git+https://github.com/agonzalezro/python-opensubtitles#egg=python-opensubtitles

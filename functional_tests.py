@@ -34,3 +34,5 @@ submit_button.click()
 
 # Thw browser takes John to a New webpage: Title "Welcome"
 assert d.title == 'Welcome'
+
+

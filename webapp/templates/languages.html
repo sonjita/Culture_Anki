@@ -1,0 +1,107 @@
+{% extends 'layout.html' %}
+{% block header %}Languages{% endblock %}
+{% block head %}
+{% endblock %}
+{% block content %}
+<p>Please add and configure the languages you wish to use this site for.</p>
+<button onclick="addLanguage()" id="add">Add Language</button>
+<div id="dialog">
+    <label for="lang_selector">
+        Which language do you want to add?
+    </label>
+    <select id="lang_selector" autocomplete="off">
+        <option value="none" hidden disabled selected= >----</option>
+    {% for lang in langs %}
+        <option value="{{lang}}">{{lang}}</option>    
+    {% endfor %}
+    </select><br>
+    <div id="proficiency">
+        <label for="vocab_proficiency" id="vocab_label"></label>
+        <select id="vocab_proficiency" autocomplete="off">
+            <option value="none" hidden disabled selected= >----</option>
+            {% for n in range(0,11) %}
+                <option value="{{n}}">{{n}}</option>
+            {% endfor %}
+        </select><br>
+        <select id="grammar_proficiency">
+
+        </select>
+    </div>
+    <div>
+            <button style="font-size: 11px;"onclick='close_window()'>Cancel</button>
+            <button style="font-size: 11px;" onclick='close_window()'>Add</button>
+    </div>
+ </div>
+   
+</div>
+
+<h4>My Languages</h4>
+{% for language in vocab %}
+<h5>{{language}}</h5>
+<ul>
+    <li>Vocabulary Proficiency : {{vocab[language]}}</li>
+    <li><a href='/learnmore'>Stem Recognition</a> of</li>
+    <ul>
+        {% for item in grammar[language] %} 
+        <li>{{item}} : {{grammar[language][item]}}</li>
+        {% endfor %}
+    </ul>
+</ul>
+{% endfor %}
+<script>
+    var dialog = document.getElementById("dialog");
+    dialog.style.display = "none";
+    add_botton = document.getElementById("add");
+    var proficiency = document.getElementById("proficiency")
+    proficiency.style.display = "none"
+    //document.getElementById("lang_selector").value = "none";
+    function addLanguage() {
+        dialog.style.display = "block";
+        add_botton.style.display = "none"
+    }
+
+    function close_window() {
+        dialog.style.display = "none";
+        add_botton.style.display = "block"
+    }
+
+  
+
+    var selector = document.getElementById("lang_selector");
+
+    selector.addEventListener("change", function() {
+        var selected = document.getElementById("lang_selector").value;
+        console.log(selected);
+        var langs = {{ langs|tojson }};
+        console.log(langs);
+        console.log(langs[selected]);
+        //console.log(selector.dataset.languages)
+        //console.log(JSON.parse("selector.dataset.test.replace(/'/g, '"')"));
+        //var langs = JSON.parse("selector.dataset.languages");
+        var vocab_label = document.getElementById("vocab_label")
+        vocab_label.innerHTML="How good is your  <a href='https://en.wiktionary.org/wiki/passive_vocabulary'>passive vocabulary</a> in " + selected + " on a scale from 0 to 10 (0 means you don't understand a word, 10 means you're native)?"
+        proficiency.style.display = "block"        
+
+    
+        
+
+        // opt.value = 1;
+        // console.log(langs);
+        // console.log(typeof(langs))
+        // opt.innerHTML = langs['English'][0];
+        // console.log(selector.dataset.test);
+
+        // document.getElementById("grammar_proficiency").appendChild(opt);
+        // for (var i = 0; i <= (langs[selected].length); i++){
+        //     var opt = document.createElement('option');
+        //     opt.value = i;
+        //     opt.innerHTML = i;
+        //     document.getElementById("grammar_proficiency").appendChild(opt);
+        // }
+    });
+
+    
+
+    
+</script> 
+{% endblock %}

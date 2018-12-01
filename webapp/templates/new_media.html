@@ -1,17 +1,6 @@
-<!doctype html>
-    <html lang='en'>
-
-    <head>
-        <link href='style.css' type='text/css' rel='stylesheet'>
-        <title>Vocabulary through Culture</title>
-        <meta charset='utf-8'>
-    </head>
- 
-
-    <body>
-        <h1>
-           Add new media
-        </h1>
+{% extends 'layout.html' %}
+{% block header %}Add New Media{% endblock %}
+{% block content %}
         <form action="/add_media" method="post"> 
         <div>   
             <label>Medium</label>
@@ -35,4 +24,6 @@
         </div>
             <input type="submit" value="Submit">
         </form>
-    </body>
+
+
+{%endblock %}

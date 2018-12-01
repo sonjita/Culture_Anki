@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+{% block header %}Media{% endblock %}
+{% block head %}
+{{ super() }}
+<style>
+    input[type=checkbox] {
+    transform: scale(0.75);
+    }
+    div {
+        font-size: 15px;
+    }
+</style>
+
+
+
+{% endblock %}
+{% block content %}
+    <p style="margin-bottom:30px;"><a href='/new_media'>Add New Media File</a></p>
+    <h4>My Media Files</h4>
+        {% for media_type in media%}
+        <div id="{{media_type}}" class="mediatype" style="border:1px solid black;">{{media_type}}           
+            <ul style="display:none; padding-left:20px; margin-top:0px;">
+                {% for lang in media[media_type] %}
+                    <li class="mediatype">{{lang}}
+                        <ul style="display:block; padding-left:20px; margin-top:0px;">
+                        {% for item in media[media_type][lang] %}
+                            <li>{{item}}
+                                <div><a style="font-size:12px;">Words</a></div>
+                                {% if verbs[media_type] %}
+                                <div style="font-size:12px;"><input type="checkbox" style="  vertical-align: bottom;
+                                    position: relative;">{{verbs[media_type]}}</input></div>
+                                {% endif %}
+                            </li>
+
+                        {%endfor%}
+                        </ul> 
+                    </li>
+                                      
+                {%endfor%}
+            </ul>
+        </div>
+        {%endfor%}
+
+        <script>
+                var coll = document.getElementsByClassName("mediatype");
+                var i;
+                
+                for (i = 0; i < coll.length; i++) {
+                  coll[i].addEventListener("click", function(event) {
+                      if (event.target.id != this.id) {
+                          return;
+                      }
+                    console.log
+                    this.classList.toggle("active");
+                    var content = this.childNodes[1];
+                    console.log("this",this);
+                    console.log(content);
+                    if (content.style.display === "block") {
+                      content.style.display = "none";
+                    } else {
+                      content.style.display = "block";
+                    } 
+                  });
+                }
+    
+                var book = document.getElementById("books");
+                var children = book.childNodes;
+                console.log("book",children);
+    
+        </script>
+
+
+
+
+
+    {%endblock%}
