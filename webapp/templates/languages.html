@@ -10,26 +10,30 @@
         Which language do you want to add?
     </label>
     <select id="lang_selector" autocomplete="off">
-        <option value="none" hidden disabled selected= >----</option>
+        <option value="none" hidden selected= >----</option>
     {% for lang in langs %}
         <option value="{{lang}}">{{lang}}</option>    
     {% endfor %}
-    </select><br>
-    <div id="proficiency">
-        <label for="vocab_proficiency" id="vocab_label"></label>
-        <select id="vocab_proficiency" autocomplete="off">
-            <option value="none" hidden disabled selected= >----</option>
-            {% for n in range(0,11) %}
-                <option value="{{n}}">{{n}}</option>
-            {% endfor %}
-        </select><br>
-        <select id="grammar_proficiency">
-
-        </select>
-    </div>
+    </select>
+    <ul id="proficiency">
+        <li>
+            <label for="vocab_proficiency" id="vocab_label"></label>
+            <select id="vocab_proficiency" autocomplete="off">
+                <option value="none" hidden disabled selected >----</option>
+                {% for n in range(0,11) %}
+                    <option value="{{n}}">{{n}}</option>
+                {% endfor %}
+            </select>
+        </li>  
+        <li>  
+            <p>Some questions about how familiar you are with inflections (<a href='https://en.wikipedia.org/wiki/Inflection'>inflections</a> are modifications of a word such as conjugation, plural etc.):</p>    
+            <ul id="grammar_proficiency">
+            </ul>
+        </li>
+    </ul>
     <div>
-            <button style="font-size: 11px;"onclick='close_window()'>Cancel</button>
-            <button style="font-size: 11px;" onclick='close_window()'>Add</button>
+            <button style="font-size: 11px;"onclick='cancel()'>Cancel</button>
+            <button style="font-size: 11px;" onclick='cancel()'>Add</button>
     </div>
  </div>
    
@@ -55,12 +59,12 @@
     var proficiency = document.getElementById("proficiency")
     proficiency.style.display = "none"
     //document.getElementById("lang_selector").value = "none";
-    function addLanguage() {
+    function addLanguage() { //if one of the questions not answered, flash "please answer all the questions"
         dialog.style.display = "block";
         add_botton.style.display = "none"
     }
 
-    function close_window() {
+    function cancel() {
         dialog.style.display = "none";
         add_botton.style.display = "block"
     }
@@ -70,19 +74,42 @@
     var selector = document.getElementById("lang_selector");
 
     selector.addEventListener("change", function() {
-        var selected = document.getElementById("lang_selector").value;
+        var selected = selector.value;
         console.log(selected);
         var langs = {{ langs|tojson }};
         console.log(langs);
         console.log(langs[selected]);
-        //console.log(selector.dataset.languages)
-        //console.log(JSON.parse("selector.dataset.test.replace(/'/g, '"')"));
-        //var langs = JSON.parse("selector.dataset.languages");
+
         var vocab_label = document.getElementById("vocab_label")
         vocab_label.innerHTML="How good is your  <a href='https://en.wiktionary.org/wiki/passive_vocabulary'>passive vocabulary</a> in " + selected + " on a scale from 0 to 10 (0 means you don't understand a word, 10 means you're native)?"
-        proficiency.style.display = "block"        
+        proficiency.style.display = "block"  
+
+        let grammar = document.getElementById("grammar_proficiency");
+        grammar.innerHTML = '';
+        
+        
+        for (let index in langs[selected]) {
+            let part_speech = langs[selected][index];
+            let element = document.createElement("LI");
+            let text = document.createTextNode(part_speech);
+
+            let yes_no = document.createElement("select")
+            let yes = document.createElement("option")
+            let no = document.createElement("option")
+            yes.text = "Yes"
+            no.text = "No"
+            yes_no.appendChild(yes)
+            yes_no.appendChild(no)
+            element.appendChild(yes_no)
+            element.appendChild(text);
+            grammar.append(element);
+        
+        }
 
     
+
+        //Four questions about how familiar you are with inflections ( <a href='https://en.wikipedia.org/wiki/Inflection'>inflections</a> are modifications of a word such as conjugation, plural etc.:
+        //1. When you see any inflection of a noun, do you always associate it with its root form? E.g. rooms -> room, mice -> mouse     
         
 
         // opt.value = 1;

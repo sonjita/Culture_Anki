@@ -5,7 +5,7 @@ from flask import g
 import first_step
 
 
-DATABASE = "/home/sonja/Dropbox/RC/Vocabulary project/Culture_Anki/Culture_Anki/user_database.db"
+DATABASE = "/home/sonja/Dropbox/RC/Vocabulary project/Culture_Anki/webapp/user_database.db"
 
 
 
@@ -80,7 +80,7 @@ def create_app(test_config=None):
         # TO DO: check that the keys of langs_vocab and Langs_grammar coincide
         usr_langs_vocab = {"English": 8, "Spanish": 3}
         usr_langs_grammar = {"English": {"nouns": "True", "regular verbs": "True", "irregular verbs":"False"}, "Spanish": {"nouns": "True", "adjectives": "True", "regular verbs": "False", "irregular verbs": "False"}}
-        all_languages = {"English":["nouns","regular verbs", "irregular verbs"], "Spanish":["nouns","adjectives","regular verbs"]}
+        all_languages = {"English":["nouns","regular verbs", "irregular verbs"], "Spanish":["nouns","adjectives","regular verbs", "irregular verbs"]}
         test_dict = {"1":"5"}
         return render_template("languages.html", vocab=usr_langs_vocab, grammar=usr_langs_grammar, langs=all_languages, test=test_dict)
 
