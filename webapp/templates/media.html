@@ -15,7 +15,35 @@
 
 {% endblock %}
 {% block content %}
-    <p style="margin-bottom:30px;"><a href='/new_media'>Add New Media File</a></p>
+    <button id="add" onclick="toggleVisibility()">+ Add Media</button>
+    <div id="dialog" style="margin-bottom:30px;">
+        <form id="form" action="/new_media" method="post"> 
+            <div>   
+                <label>Medium</label>
+                <select>
+                        <option value="Movie">Movie</option>
+                        <option value="Book">Book</option>
+                        <option value="Song">Song</option>
+                </select>
+            </div>
+            <div>
+                <label>Title</label>  
+                <input type="text" name="title">
+             </div>
+             <div>   
+                <label>Language</label>
+                <input type="text" name="language">
+            </div>
+            <div>
+                <label>Upload File</label> 
+                <input type="file" name="text_file">
+            </div>
+                <input type="submit" value="Submit">
+                
+            </form>
+            <button onclick="(evt) => cancel(evt)">cancel</button>
+
+        </div>
     <h4>My Media Files</h4>
         {% for media_type in media%}
         <div id="{{media_type}}" class="mediatype" style="border:1px solid black;">{{media_type}}           

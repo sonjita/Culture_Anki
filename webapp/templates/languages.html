@@ -4,7 +4,7 @@
 {% endblock %}
 {% block content %}
 <p>Please add and configure the languages you wish to use this site for.</p>
-<button onclick="addLanguage()" id="add">Add Language</button>
+<button onclick="toggleVisibility()" id="add">Add Language</button>
 <div id="dialog">
     <label for="lang_selector">
         Which language do you want to add?
@@ -53,21 +53,10 @@
 </ul>
 {% endfor %}
 <script>
-    var dialog = document.getElementById("dialog");
-    dialog.style.display = "none";
-    add_botton = document.getElementById("add");
+    // document.getElementById("lang_selector").value = "none";
+
     var proficiency = document.getElementById("proficiency")
     proficiency.style.display = "none"
-    //document.getElementById("lang_selector").value = "none";
-    function addLanguage() { //if one of the questions not answered, flash "please answer all the questions"
-        dialog.style.display = "block";
-        add_botton.style.display = "none"
-    }
-
-    function cancel() {
-        dialog.style.display = "none";
-        add_botton.style.display = "block"
-    }
 
   
 

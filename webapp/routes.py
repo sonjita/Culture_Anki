@@ -27,7 +27,7 @@ DATABASE = "/home/sonja/Dropbox/RC/Vocabulary project/Culture_Anki/webapp/user_d
 
 def create_app(test_config=None): 
     
-    app = Flask(__name__, instance_relative_config=True, )
+    app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY="dev"      
     )
@@ -61,6 +61,7 @@ def create_app(test_config=None):
         
 
         return render_template("home.html")
+
 
     @app.route("/create_account")
     def render_account_creation():
