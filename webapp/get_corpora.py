@@ -4,7 +4,7 @@ from pprint import pprint
 from pythonopensubtitles.opensubtitles import OpenSubtitles
 #for opensubtitles
 from xmlrpc.client import ServerProxy, Transport
-from secrets import password 
+from secrets import password, mail 
 import gzip
 import zlib
 import base64
@@ -12,6 +12,8 @@ import io
 import chardet
 
 ost = OpenSubtitles()
+
+token = ost.login(mail, password)
 
 url_movie_request = "https://api.themoviedb.org/3/movie/335983?api_key=e0345752ecea521b0ae6ecdd206d86ee"
 
