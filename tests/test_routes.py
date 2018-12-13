@@ -1,5 +1,9 @@
+# run via ~/Dropbox/RC/Vocabulary project/vocabulary_through_culture$ python -m pytest tests/ 
+
 import pytest
-from routes import create_app
+from webapp.routes import create_app
+
+
 
 
 # @pytest.fixture
