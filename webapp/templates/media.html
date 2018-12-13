@@ -15,34 +15,42 @@
 
 {% endblock %}
 {% block content %}
-    <button id="add" onclick="toggleVisibility()">+ Add Media</button>
-    <div id="dialog" style="margin-bottom:30px;">
-        <form id="form" action="/new_media" method="post"> 
+    <button id="add" onclick="toggleVisibility('outer_dialog')">+ Add Media</button>
+    <div id="outer_dialog" name="dialog" style="margin-bottom:30px;">
+        <!-- <form id="form" action="/new_media" method="post">  -->
             <div>   
                 <label>Medium</label>
-                <select>
+                <select id="medium_selector" name="dialog_select" autocomplete="off">
+                        <option value="none" hidden disabled selected>----</option>
                         <option value="Movie">Movie</option>
+                        <option value="Series">Series</option>
                         <option value="Book">Book</option>
                         <option value="Song">Song</option>
                 </select>
             </div>
-            <div>
-                <label>Title</label>  
-                <input type="text" name="title">
-             </div>
-             <div>   
-                <label>Language</label>
-                <input type="text" name="language">
-            </div>
-            <div>
-                <label>Upload File</label> 
-                <input type="file" name="text_file">
-            </div>
-                <input type="submit" value="Submit">
+            <div id="inner_dialog">
+                <div>
+                    <label>Title</label>  
+                    <input type="text" name="dialog_input" id="title">
+                </div>
+                <div>   
+                    <label>Language</label>
+                    <select name="dialog_select" autocomplete="off">
+                        <option value="none" hidden disabled selected >----</option>
+                        <option>English</option>
+                        <option>Spanish</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Upload File</label> 
+                    <input type="file" name="dialog_input">
+                </div>
+                <div>
+                    <button style="font-size: 11px;"onclick='cancel()'>Cancel</button>
+                    <button style="font-size: 11px;" onclick='add()'>Add</button>
+                </div> 
                 
-            </form>
-            <button onclick="(evt) => cancel(evt)">cancel</button>
-
+            </div>
         </div>
     <h4>My Media Files</h4>
         {% for media_type in media%}
@@ -94,6 +102,14 @@
                 var book = document.getElementById("books");
                 var children = book.childNodes;
                 console.log("book",children);
+
+                var inner = document.getElementById('inner_dialog');
+                inner.style.display = "none";
+                var select = document.getElementById('medium_selector');
+                select.addEventListener("change", function() {
+                    console.log("change");
+                    inner.style.display = "block";
+                })
     
         </script>
 

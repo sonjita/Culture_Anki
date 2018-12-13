@@ -4,8 +4,8 @@ import os
 import srt
 import datetime
 import json
-
-from cfg import KNOWN_WORDS_PATH
+print('webapp.first_step imported')
+from webapp.cfg import KNOWN_WORDS_PATH
 
 
 #Not used anymore. This was to inicialize the data set with general basic words the user knows (independent from a movie; setting up a language).
@@ -27,7 +27,7 @@ def setup_json_of_basic_known_words():
 
 #Not used anymore. This was to inicialize the data set with general basic words the user knows (independent from a movie; setting up a language).
 def get_100_words():    
-    with open("Most_used_words(10000).txt","r") as fin:
+    with open("webapp/Most_used_words(10000).txt","r") as fin:
         L = [line.strip() for line in fin.readlines()]
     MostCommonInChunks = []
     for i in range(0, 10000, 100):

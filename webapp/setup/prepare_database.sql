@@ -1,5 +1,5 @@
 -- Try via $ sqlite3; .read prepare_database.sql
--- Create database via ~/Dropbox/RC/Vocabulary project/vocabulary_through_culture/webapp/model$ sqlite3 database.db < prepare_database.sql
+-- Create database via ~/Dropbox/RC/Vocabulary project/vocabulary_through_culture/webapp/model$ sqlite3 webapp/model/database.db < prepare_database.sql
 -- Drop tables via $ sqlite3; drop table <name of table>
 
 CREATE TABLE users (

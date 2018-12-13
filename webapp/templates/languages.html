@@ -4,21 +4,22 @@
 {% endblock %}
 {% block content %}
 <p>Please add and configure the languages you wish to use this site for.</p>
-<button onclick="toggleVisibility()" id="add">Add Language</button>
-<div id="dialog">
+<button onclick="toggleVisibility('outer_dialog')" id="add">Add Language</button>
+<div id="outer_dialog" name="dialog">
     <label for="lang_selector">
         Which language do you want to add?
     </label>
-    <select id="lang_selector" autocomplete="off">
+    <select id="lang_selector" name="dialog_select" autocomplete="off">
         <option value="none" hidden selected= >----</option>
     {% for lang in langs %}
         <option value="{{lang}}">{{lang}}</option>    
     {% endfor %}
     </select>
-    <ul id="proficiency">
+    
+    <ul id="inner_dialog">
         <li>
             <label for="vocab_proficiency" id="vocab_label"></label>
-            <select id="vocab_proficiency" autocomplete="off">
+            <select id="vocab_proficiency" name="dialog_select" autocomplete="off">
                 <option value="none" hidden disabled selected >----</option>
                 {% for n in range(0,11) %}
                     <option value="{{n}}">{{n}}</option>
@@ -33,7 +34,7 @@
     </ul>
     <div>
             <button style="font-size: 11px;"onclick='cancel()'>Cancel</button>
-            <button style="font-size: 11px;" onclick='cancel()'>Add</button>
+            <button style="font-size: 11px;" onclick='add()'>Add</button>
     </div>
  </div>
    
@@ -55,7 +56,7 @@
 <script>
     // document.getElementById("lang_selector").value = "none";
 
-    var proficiency = document.getElementById("proficiency")
+    var proficiency = document.getElementById("inner_dialog")
     proficiency.style.display = "none"
 
   
@@ -83,10 +84,16 @@
             let text = document.createTextNode(part_speech);
 
             let yes_no = document.createElement("select")
+            yes_no.name = "dialog_select"
+            let nothing = document.createElement("option")
+            nothing.text = "-----"
+            nothing.setAttribute("hidden", "selected", "disabled")
+            nothing.value ="none"
             let yes = document.createElement("option")
             let no = document.createElement("option")
             yes.text = "Yes"
             no.text = "No"
+            yes_no.appendChild(nothing)
             yes_no.appendChild(yes)
             yes_no.appendChild(no)
             element.appendChild(yes_no)

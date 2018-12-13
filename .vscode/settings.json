@@ -1,4 +1,9 @@
 {
-    "python.pythonPath": "/usr/local/bin/python3",
-    "python.linting.pylintEnabled": false
+    "python.pythonPath": "/home/sonja/.local/share/virtualenvs/vocabulary_through_culture-Gps5wiW8/bin/python",
+    "python.linting.pylintEnabled": false,
+    "python.linting.enabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.formatting.provider": "black",
+    "editor.tabSize": 4,
+    "editor.detectIndentation": false
 }
