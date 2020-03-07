@@ -3,10 +3,10 @@
 ## Installation
 Prerequisites: Python 3.7, Pipenv, SQLite
 
-Clone repository
-`pipenv install`
-`pipenv run start_app.py`
-Follow the CLI instructions (got to port 7000)
+1. Clone repository
+2. `pipenv install`
+3. `pipenv run start_app.py`
+4. Follow the CLI instructions (got to port 7000)
 
 ## Description
 
